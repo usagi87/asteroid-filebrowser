@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Categories=Applications;
+Exec=asteroid-filebrowser
+Icon=ios-image-outline
+X-Asteroid-Center-Color=#b01c7e
+X-Asteroid-Outer-Color=#420a2f
+Name=File Browser
