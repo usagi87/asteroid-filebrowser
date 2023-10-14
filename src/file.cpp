@@ -8,34 +8,55 @@
 
 using namespace std;
 
-void File::remove(QString filename) {
+bool File::remove(QString filename) {
 	QFile file (filename);
-    if(!file.remove()){
-    	qDebug() << "Error: couldn't delete file!";
-    } else {
-    	qDebug() << "File deleted succesfully.";
+	if(file.exists()) {
+    	if(!file.remove()){
+    		qDebug() << "Error: couldn't delete file!";
+    		return false;
+    	} else {
+    		qDebug() << "File deleted succesfully.";
+    		return true;
+    	}
+    }else {
+    	qDebug() << "Error: file already exist!";
+    	return false;
     }
 }
 
-void File::rename(QString oldname, QString newname) {
+bool File::rename(QString oldname, QString newname) {
 	QString oldFile = oldname;
 	oldname.truncate(oldname.lastIndexOf("/"));
 	QString newFile = oldname + "/" + newname;
-	QFile file (oldFile);	
-    if(!file.rename(newFile)){
-    	qDebug() << "Error: couldn't rename file!";
-    } else {
-    	qDebug() << "File renamed succesfully.";
+	QFile file (oldFile);
+	if(file.exists()){	
+    	if(!file.rename(newFile)){
+    		qDebug() << "Error: couldn't rename file!";
+    		return false;
+    	} else {
+    		qDebug() << "File renamed succesfully.";
+    		return true;
+    	}
+    }else{
+    	qDebug() << "Error: file already exists!";
+    	return false;
     }
 }
 
-void File::copy(QString filename, QString dir){
+bool File::copy(QString filename, QString dir){
 	QFile file (filename);
 	QString str = dir + filename.remove(0,filename.lastIndexOf("/"));
-	if(!file.copy(str)){
-    	qDebug() << "Error: couldn't copy file!";
-    } else {
-    	qDebug() << "File copied succesfully.";
+	if(file.exists()) {
+		if(!file.copy(str)){
+    		qDebug() << "Error: couldn't copy file!";
+    		return false;
+    	} else {
+    		qDebug() << "File copied succesfully.";
+    		return true;
+    	}
+    } else{
+    	qDebug() << "Error: file already exists!";
+    	return false;
     }
    
 }

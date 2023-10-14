@@ -1,4 +1,7 @@
-add_library(asteroid-filebrowser main.cpp file.cpp file.h resources.qrc)
+add_library(asteroid-filebrowser main.cpp resources.qrc
+	file.cpp 
+	dir.cpp 
+)
 
 target_link_libraries(asteroid-filebrowser PUBLIC
 	AsteroidApp)

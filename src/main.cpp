@@ -16,10 +16,13 @@
  */
 #include <QQmlEngine>
 #include <file.h>
+#include <dir.h>
 #include <asteroidapp.h>
 
 int main(int argc, char *argv[])
 {
-	qmlRegisterType<File>("File", 1, 0, "File");
+	
+	qmlRegisterType<Dir>("Dir", 1, 0, "Dir");
+    qmlRegisterType<File>("File", 1, 0, "File");
     return AsteroidApp::main(argc, argv);
 }
